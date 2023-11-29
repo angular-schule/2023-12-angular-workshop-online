@@ -1,14 +1,28 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
+import { DashboardComponent } from "./books/dashboard/dashboard.component";
+
 
 @Component({
-  selector: 'app-root',
-  standalone: true,
-  imports: [CommonModule, RouterOutlet],
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+    selector: 'app-root',
+    standalone: true,
+    templateUrl: './app.component.html',
+    styleUrl: './app.component.scss',
+    imports: [CommonModule, RouterOutlet, DashboardComponent]
 })
 export class AppComponent {
-  title = 'book-rating';
+  title = 'Book Rating';
 }
+
+
+/*
+// TODO
+- Datenmodell
+- Daten
+- Anzeige
+- Komponente
+  - für die Buchliste
+  (- für ein einzelnes Buch)
+
+*/
