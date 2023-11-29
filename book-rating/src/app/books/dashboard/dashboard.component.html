@@ -1,3 +1,4 @@
-<app-book
-  *ngFor="let b of books"
+@for (b of books; track b.isbn) {
+  <app-book
   [book]="b"></app-book>
+}
