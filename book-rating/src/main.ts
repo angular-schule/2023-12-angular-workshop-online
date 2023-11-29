@@ -9,7 +9,7 @@ bootstrapApplication(AppComponent, appConfig)
 /////////
 
 
-export class Customer {
+export class Customer<T = string> {
   /*private id: number;
 
   constructor(id: number) {
@@ -17,9 +17,10 @@ export class Customer {
   }*/
 
   // Constructor Shorthand
-  constructor(private id: number) {}
+  // constructor(private id: number) {}
+  constructor(private id: T) {}
 
-  fooBar(arg: string): number {
+  fooBar(arg: T): number {
     // Callback
     setTimeout(() => {
       console.log('Die ID ist', this.id);
@@ -32,7 +33,6 @@ export class Customer {
 
 export const myCustomer = new Customer(4);
 myCustomer.fooBar('');
-myCustomer.id = 4;
 
 
 
