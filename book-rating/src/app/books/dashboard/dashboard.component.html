@@ -1,4 +1,5 @@
 @for (b of books; track b.isbn) {
-  <app-book
-  [book]="b"></app-book>
+  <app-book [book]="b"></app-book>
 }
+
+<p>Anzahl Bücher: {{ books.length }}</p>

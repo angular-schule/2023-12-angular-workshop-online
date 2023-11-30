@@ -6,3 +6,7 @@ export interface Book {
   price: number;
   rating: number;
 }
+
+// Argumente für Interface statt Klasse für Datenmodell
+// - Serialisierbarkeit
+// - Immutability / Klonbarkeit
