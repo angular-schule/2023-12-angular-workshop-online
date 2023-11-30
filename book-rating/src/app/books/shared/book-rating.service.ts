@@ -9,12 +9,16 @@ export class BookRatingService {
   constructor() { }
 
   rateUp(book: Book): Book {
-    // TODO
-    return book;
+    return {
+      ...book,
+      rating: book.rating < 5 ? book.rating + 1 : 5
+    }
   }
 
   rateDown(book: Book): Book {
-    // TODO
-    return book;
+    return {
+      ...book,
+      rating: Math.max(book.rating - 1, 1)
+    }
   }
 }
