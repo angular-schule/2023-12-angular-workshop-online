@@ -14,6 +14,8 @@ export class BookComponent {
   // hier dürfen Daten von der Elternkomponente hineinfließen
   // von oben nach unten
   @Input() book?: Book;
+  @Input() minRating = 0;
+  @Input() maxRating = 10;
 
   // hier fließen Daten zur Elternkomponente
   // von unten nach oben

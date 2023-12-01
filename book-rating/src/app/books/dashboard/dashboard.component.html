@@ -2,6 +2,8 @@
   <app-book
     (rateUp)="doRateUp($event)"
     (rateDown)="doRateDown($event)"
+    [maxRating]="5"
+    [minRating]="1"
     [book]="b"></app-book>
 }
 
