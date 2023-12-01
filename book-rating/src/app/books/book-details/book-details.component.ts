@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterLink } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-book-details',
@@ -13,4 +13,16 @@ export class BookDetailsComponent {
   // ISBN aus der URL
   // HTTP
   // Anzeige
+
+  constructor(private route: ActivatedRoute) {
+    // PULL
+    // const isbn = this.route.snapshot.paramMap.get('isbn');
+    // console.log(isbn);
+
+    // PUSH
+    this.route.paramMap.subscribe(params => {
+      const isbn = params.get('isbn');
+      console.log(isbn);
+    })
+  }
 }
