@@ -1,0 +1,29 @@
+
+<table class="table table-striped align-middle">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Übung</th>
+      <th>Ordner</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let e of exercises; index as i">
+      <td>
+        <strong>{{ i + 1 }}</strong>
+      </td>
+      <td>
+        <a class="text-dark text-decoration-none" [routerLink]="['/exercises', e.folder]">{{ e.name }}</a>
+      </td>
+      <td>
+        <strong><code>{{ e.folder }}</code></strong>
+      </td>
+      <td class="text-center">
+        <a class="btn btn-sm btn-success" [routerLink]="['/exercises', e.folder]">Öffnen</a>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="small text-muted mt-4" *ngIf="generationDate">Stand: {{ generationDate | date:'mediumDate' }}</div>
