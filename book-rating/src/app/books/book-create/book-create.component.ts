@@ -67,9 +67,9 @@ export class BookCreateComponent {
     // return !!control.errors?.['minlength'] && control.touched;
     // return !!control.getError(errorCode)
     // return this.bookForm.hasError(errorCode, controlName);
-
-
   }
+
+  submitForm() {}
 }
 
 /*
