@@ -21,6 +21,7 @@ export class BookDetailsComponent {
     // console.log(isbn);
 
     // PUSH
+    // TODO: Verschachtelte Subscriptions
     this.route.paramMap.subscribe(params => {
       const isbn = params.get('isbn')!; // Non-Null Assertion – vorsichtig sein!
       this.bs.getSingle(isbn).subscribe(book => {
