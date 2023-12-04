@@ -22,6 +22,7 @@ export class BookComponent {
   // von unten nach oben
   @Output() rateUp = new EventEmitter<Book>();
   @Output() rateDown = new EventEmitter<Book>();
+  @Output() delete = new EventEmitter<Book>();
 
   doRateUp() {
     this.rateUp.emit(this.book);
@@ -29,5 +30,9 @@ export class BookComponent {
 
   doRateDown() {
     this.rateDown.emit(this.book);
+  }
+
+  doDelete() {
+    this.delete.emit(this.book);
   }
 }

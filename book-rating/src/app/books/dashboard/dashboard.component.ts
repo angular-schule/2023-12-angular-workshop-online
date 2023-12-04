@@ -33,6 +33,16 @@ export class DashboardComponent {
     this.updateList(ratedBook);
   }
 
+  doDelete(book: Book) {
+    this.bs.delete(book.isbn).subscribe({
+      next: () => {
+        this.bs.getAll().subscribe(books => this.books = books);
+        // this.books = this.books.filter(b => b.isbn !== book.isbn);
+      },
+      error: () => {}
+    });
+  }
+
   private updateList(ratedBook: Book) {
     // [1,2,3,4,5].map(e => e * 10) // [10, 20, 30, 40, 50] // Projektionsfunktion
     // [1,2,3,4,5,6,7,8,9,10].filter(e => e >= 5) // [5,6,7,8,9,10] // Prädikatsfunktion
