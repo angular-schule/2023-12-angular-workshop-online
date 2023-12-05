@@ -4,6 +4,7 @@ import { Book } from '../shared/book';
 import { BookComponent } from '../book/book.component';
 import { BookRatingService } from '../shared/book-rating.service';
 import { BookStoreService } from '../shared/book-store.service';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-dashboard',
@@ -17,7 +18,7 @@ export class DashboardComponent {
 
   // private rs2 = inject(BookRatingService);
 
-  constructor(private rs: BookRatingService, private bs: BookStoreService) {
+  constructor(private title: Title, private rs: BookRatingService, private bs: BookStoreService) {
     this.bs.getAll().subscribe(books => {
       this.books = books;
     });
