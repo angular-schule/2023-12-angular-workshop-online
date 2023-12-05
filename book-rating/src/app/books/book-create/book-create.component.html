@@ -33,7 +33,7 @@
     <input type="number" class="form-control" id="ratingField" formControlName="rating">
   </div>
 
-  <button type="submit" class="btn btn-green">Submit</button>
+  <button type="submit" class="btn btn-green" [disabled]="bookForm.invalid">Submit</button>
 
 </form>
 

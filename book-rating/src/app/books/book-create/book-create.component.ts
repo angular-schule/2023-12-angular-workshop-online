@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Book } from '../shared/book';
+import { BookStoreService } from '../shared/book-store.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-book-create',
@@ -45,6 +48,8 @@ export class BookCreateComponent {
     }),
   });
 
+  constructor(private bs: BookStoreService, private router: Router) {}
+
   isInvalid(controlName: string): boolean {
     const control = this.bookForm.get(controlName);
 
@@ -69,20 +74,15 @@ export class BookCreateComponent {
     // return this.bookForm.hasError(errorCode, controlName);
   }
 
-  submitForm() {}
-}
+  submitForm() {
+    if (this.bookForm.invalid) {
+      return;
+    }
 
-/*
-TODO
-- Validierung
-- Meldungen
-  - "Die ISBN ist ungültig"
-  - "Die ISBN ist zu kurz"
-- Submit-Button
-- Formular abschicken
-- HTTP Buch anlegen
-- bei Erfolg:
-  - Navigation zur Detailseite
-  - Erfolgsnachricht
-  - zurücksetzen
-*/
+    const newBook: Book = this.bookForm.getRawValue();
+
+    this.bs.create(newBook).subscribe(receivedBook => {
+      this.router.navigate(['/books', receivedBook.isbn]);
+    });
+  }
+}
