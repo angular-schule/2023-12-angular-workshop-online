@@ -51,9 +51,22 @@ export class CreatingComponent {
       sub.next(20);
       sub.next(30);
 
-      setTimeout(() => sub.next(100), 2000)
-      setTimeout(() => sub.next(200), 4000)
-      setTimeout(() => sub.complete(), 6000)
+      const timer1 = setTimeout(() => sub.next(100), 2000)
+      const timer2 = setTimeout(() => sub.next(200), 4000)
+      const timer3 = setTimeout(() => {
+        console.log('6000');
+        sub.complete();
+      }, 6000)
+
+
+      // TearDown Logic
+      // wird ausgeführt, wenn unsubscribe (von außen)
+      return () => {
+        console.log('teardown');
+        clearTimeout(timer1);
+        clearTimeout(timer2);
+        clearTimeout(timer3);
+      }
     }
 
     const obs: Observer<number> = {
@@ -65,13 +78,38 @@ export class CreatingComponent {
     // producer(obs);
 
     const myObs$ = new Observable(producer)
-    // myObs$.subscribe(obs);
+    // const sub = myObs$.subscribe(obs);
+
+    /*setTimeout(() => {
+      console.log('unsubscribe');
+      sub.unsubscribe()
+    }, 4500)*/
 
     const myObs2$ = new Observable<string>(sub => {
-      sub.next('Hallo')
-      sub.next('Welt')
-      sub.complete();
+      setTimeout(() => {
+        console.log('OBS Hallo');
+        sub.next('HALLO')
+      }, 2000)
     });
+
+    myObs2$.subscribe(e => console.log('Result Obs', e))
+
+    const myPromise = new Promise((resolve, reject) => {
+      setTimeout(() => {
+        console.log('Promise Hallo');
+        resolve('HALLO')
+      }, 2000)
+    });
+
+    from(myPromise).subscribe(e => console.log('Promise from', e))
+
+    // myPromise.then(e => console.log('Result Promise', e))
+
+    /*setTimeout(() => {
+      console.log('SPÄTER LOS')
+      myPromise.then(e => console.log('Promise später', e));
+      myObs2$.subscribe(e => console.log('Obs später', e));
+    }, 5000)*/
 
     /******************************/
   }

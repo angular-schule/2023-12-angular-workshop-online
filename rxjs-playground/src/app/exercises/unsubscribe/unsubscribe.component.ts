@@ -28,7 +28,7 @@ export class UnsubscribeComponent implements OnDestroy {
     const interval$ = timer(0, 1000);
 
     interval$.pipe(
-      // takeUntil(this.destroy$)
+      // takeUntil(this.destroy$),
       takeUntilDestroyed()
     ).subscribe({
       next: e => this.log(e),
