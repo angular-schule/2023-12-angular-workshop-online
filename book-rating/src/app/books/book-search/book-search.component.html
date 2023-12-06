@@ -1,3 +1,15 @@
 <div class="form-group">
   <input type="text" class="form-control" placeholder="Suche" [formControl]="searchControl">
 </div>
+
+<!--@if (books$ | async; as books) {
+  @for (b of books; track b.isbn) {
+    <p>{{ b.isbn }}: {{ b.title }}</p>
+  }
+}-->
+
+@for (b of books$ | async; track b.isbn) {
+  <ul class="mb-5">
+    @for (o of b | keyvalue; track o) {<li>{{ o.key }}: {{ o.value }}</li>}
+  </ul>
+}
